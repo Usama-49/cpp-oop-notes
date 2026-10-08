@@ -1,0 +1,22 @@
+# Compiled binaries / Executables
+*.exe
+*.out
+*.app
+
+# Object files and intermediate build files
+*.o
+*.obj
+*.d
+*.pdb
+*.ilk
+
+# IDE & Editor metadata
+.vscode/
+.idea/
+*.suo
+*.user
+*.vcxproj*
+
+# OS clutter
+Thumbs.db
+.DS_Store
