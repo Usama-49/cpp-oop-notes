@@ -21,7 +21,7 @@ public:
     };
     void printGpa() //? Getter
     {
-        cout << gpa << endl;
+        cout << "gpa :" << gpa << endl;
     }
 
 private:

@@ -23,10 +23,43 @@ public:
         price = p;
     }
 };
+/*
+===================================================================
+1. Honda Memory Layout (Single Multilevel Chain: Scooty -> Bike -> Honda)
+===================================================================
+[ Honda Object ]
+├── topspeed  (from Scooty)
+├── milage    (from Scooty)
+├── gears     (from Bike)
+└── price     (from Honda)
+
+Total Size: 4 integers (16 bytes)
+*/
 class OTF : public Honda, public Bike
 {
     //! Will access both Honda & Bike Classes public data
 };
+/*
+===================================================================
+2. OTF Memory Layout (Diamond Problem: Inherits Honda + Bike)
+===================================================================
+[ OTF Object ]
+├── Path 1 (via Honda):
+│   ├── topspeed  (from Scooty)
+│   ├── milage    (from Scooty)
+│   ├── gears     (from Bike)
+│   └── price     (from Honda)
+│
+└── Path 2 (via direct Bike inheritance):
+    ├── topspeed  (from Scooty)   <-- DUPLICATE
+    ├── milage    (from Scooty)   <-- DUPLICATE
+    └── gears     (from Bike)     <-- DUPLICATE
+
+Total Size: 7 integers (28 bytes)
+Note: Accessing 'otf.gears' causes a compile error due to ambiguity!
+Must specify path: 'otf.Honda::gears' or 'otf.Bike::gears'.
+===================================================================
+*/
 int main()
 {
     Honda h1(120, 40, 4, 120000);
